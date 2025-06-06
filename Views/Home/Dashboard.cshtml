@@ -1,0 +1,150 @@
+@model HospitalManagement.Models.User
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow">
+            <div class="card-header bg-info text-white">
+                <h4><i class="fas fa-tachometer-alt"></i> Welcome, @ViewBag.UserName!</h4>
+                <p class="mb-0">Role: @ViewBag.UserRole</p>
+            </div>
+            <div class="card-body">
+                @if (ViewBag.UserRole == HospitalManagement.Models.UserRole.Patient)
+                {
+                    var patient = Model as HospitalManagement.Models.Patient;
+                    <h5 class="text-primary mb-3">Patient Information</h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td><strong>Name:</strong></td>
+                                    <td>@Model.Name</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Email:</strong></td>
+                                    <td>@Model.Email</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>CNP:</strong></td>
+                                    <td>@Model.CNP</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Phone:</strong></td>
+                                    <td>@Model.PhoneNumber</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Blood Type:</strong></td>
+                                    <td>@(patient?.BloodType ?? "Not specified")</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td><strong>Birth Date:</strong></td>
+                                    <td>@(patient?.BirthDate?.ToString("dd/MM/yyyy") ?? "Not specified")</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Weight:</strong></td>
+                                    <td>@(patient?.Weight?.ToString("F1") ?? "Not specified") kg</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Height:</strong></td>
+                                    <td>@(patient?.Height?.ToString("F1") ?? "Not specified") cm</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Emergency Contact:</strong></td>
+                                    <td>@(patient?.EmergencyContact ?? "Not specified")</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Address:</strong></td>
+                                    <td>@(patient?.Address ?? "Not specified")</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    @if (!string.IsNullOrEmpty(patient?.Allergies))
+                    {
+                        <div class="alert alert-warning">
+                            <strong>Allergies:</strong> @patient.Allergies
+                        </div>
+                    }
+                }
+                else if (ViewBag.UserRole == HospitalManagement.Models.UserRole.Doctor)
+                {
+                    var doctor = Model as HospitalManagement.Models.Doctor;
+                    <h5 class="text-success mb-3">Doctor Information</h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td><strong>Name:</strong></td>
+                                    <td>Dr. @Model.Name</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Email:</strong></td>
+                                    <td>@Model.Email</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>CNP:</strong></td>
+                                    <td>@Model.CNP</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Phone:</strong></td>
+                                    <td>@Model.PhoneNumber</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td><strong>Department:</strong></td>
+                                    <td>@(doctor?.Department ?? "Not specified")</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Years of Experience:</strong></td>
+                                    <td>@(doctor?.YearsOfExperience?.ToString() ?? "Not specified") years</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>License Number:</strong></td>
+                                    <td>@(doctor?.LicenseNumber ?? "Not specified")</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                }
+                else if (ViewBag.UserRole == HospitalManagement.Models.UserRole.Admin)
+                {
+                    <h5 class="text-danger mb-3">Administrator Information</h5>
+                    <table class="table table-borderless">
+                        <tr>
+                            <td><strong>Name:</strong></td>
+                            <td>@Model.Name</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Email:</strong></td>
+                            <td>@Model.Email</td>
+                        </tr>
+                        <tr>
+                            <td><strong>CNP:</strong></td>
+                            <td>@Model.CNP</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Phone:</strong></td>
+                            <td>@Model.PhoneNumber</td>
+                        </tr>
+                    </table>
+                }
+                
+                <div class="mt-4">
+                    <a asp-action="UpdateProfile" class="btn btn-primary">
+                        <i class="fas fa-edit"></i> Update Profile
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
