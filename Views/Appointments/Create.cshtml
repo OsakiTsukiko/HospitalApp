@@ -19,8 +19,10 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-body">
-                    <form asp-action="Create" method="post">
+                    <form asp-action="Create" method="post" id="appointmentForm">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <input type="hidden" asp-for="DoctorId" value="@User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value" />
 
                         <div class="form-group mb-3">
                             <label asp-for="PatientId" class="control-label">Patient</label>
@@ -78,16 +80,14 @@
             now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
             document.getElementById('DateTime').min = now.toISOString().slice(0, 16);
 
-            // Form submission handler
-            $('form').on('submit', function(e) {
-                console.log("Form submitted");
-                console.log("Form data:", {
-                    patientId: $('#PatientId').val(),
-                    procedureId: $('#ProcedureId').val(),
-                    room: $('#Room').val(),
-                    dateTime: $('#DateTime').val(),
-                    notes: $('#Notes').val()
-                });
+            // Form submission logging
+            $('#appointmentForm').on('submit', function(e) {
+                console.log('Form submitted');
+                console.log('PatientId:', $('#PatientId').val());
+                console.log('ProcedureId:', $('#ProcedureId').val());
+                console.log('Room:', $('#Room').val());
+                console.log('DateTime:', $('#DateTime').val());
+                console.log('Notes:', $('#Notes').val());
             });
         });
     </script>

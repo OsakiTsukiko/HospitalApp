@@ -66,29 +66,10 @@ namespace HospitalManagement.Controllers
 
         // POST: Appointments/Create
         [HttpPost]
-        public async Task<IActionResult> Create([Bind("PatientId,ProcedureId,Room,DateTime,Notes,DoctorId")] Appointment appointment)
+        public async Task<IActionResult> Create(Appointment appointment)
         {
             Console.WriteLine("POST Create action called");
-            System.Diagnostics.Debug.WriteLine("POST Create action called");
             
-            // Log ModelState errors immediately
-            if (!ModelState.IsValid)
-            {
-                System.Diagnostics.Debug.WriteLine("ModelState is invalid");
-                foreach (var modelStateEntry in ModelState.Values)
-                {
-                    foreach (var error in modelStateEntry.Errors)
-                    {
-                        System.Diagnostics.Debug.WriteLine($"Model Error: {error.ErrorMessage}");
-                    }
-                }
-                ViewBag.Patients = await _context.Patients.ToListAsync();
-                ViewBag.Procedures = await _context.Procedures.ToListAsync();
-                return View(appointment);
-            }
-
-            System.Diagnostics.Debug.WriteLine($"Received appointment data: PatientId={appointment?.PatientId}, ProcedureId={appointment?.ProcedureId}, Room={appointment?.Room}, DateTime={appointment?.DateTime}, DoctorId={appointment?.DoctorId}");
-
             var currentUser = await _userManager.GetUserAsync(User);
             if (currentUser == null || currentUser.Role != UserRole.Doctor)
             {
@@ -96,12 +77,50 @@ namespace HospitalManagement.Controllers
                 return RedirectToAction("AccessDenied", "Home");
             }
 
+            // Set the doctor ID before validation
+            appointment.DoctorId = currentUser.Id;
+            Console.WriteLine($"Setting DoctorId to: {appointment.DoctorId}");
+
+            // Load navigation properties
+            appointment.Doctor = await _context.Users
+                .OfType<Doctor>()
+                .FirstOrDefaultAsync(d => d.Id == appointment.DoctorId);
+            
+            appointment.Patient = await _context.Users
+                .OfType<Patient>()
+                .FirstOrDefaultAsync(p => p.Id == appointment.PatientId);
+            
+            appointment.Procedure = await _context.Procedures
+                .FirstOrDefaultAsync(p => p.Id == appointment.ProcedureId);
+
+            // Log all form data
+            Console.WriteLine($"PatientId: {appointment.PatientId}");
+            Console.WriteLine($"ProcedureId: {appointment.ProcedureId}");
+            Console.WriteLine($"Room: {appointment.Room}");
+            Console.WriteLine($"DateTime: {appointment.DateTime}");
+            Console.WriteLine($"DoctorId: {appointment.DoctorId}");
+            Console.WriteLine($"Notes: {appointment.Notes}");
+            Console.WriteLine($"ModelState.IsValid: {ModelState.IsValid}");
+
+            // Log ModelState errors
+            if (!ModelState.IsValid)
+            {
+                Console.WriteLine("ModelState Errors:");
+                foreach (var modelStateEntry in ModelState)
+                {
+                    Console.WriteLine($"Key: {modelStateEntry.Key}");
+                    foreach (var error in modelStateEntry.Value.Errors)
+                    {
+                        Console.WriteLine($"Error for {modelStateEntry.Key}: {error.ErrorMessage}");
+                    }
+                }
+                ViewBag.Patients = await _context.Patients.ToListAsync();
+                ViewBag.Procedures = await _context.Procedures.ToListAsync();
+                return View(appointment);
+            }
+
             try
             {
-                // Set the doctor ID
-                appointment.DoctorId = currentUser.Id;
-                System.Diagnostics.Debug.WriteLine($"Setting DoctorId to: {appointment.DoctorId}");
-
                 // Check if the room is available
                 var existingAppointment = await _context.Appointments
                     .FirstOrDefaultAsync(a => a.Room == appointment.Room && 

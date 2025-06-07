@@ -10,17 +10,17 @@ namespace HospitalManagement.Models
         [Required]
         public string PatientId { get; set; }
         [ForeignKey("PatientId")]
-        public Patient Patient { get; set; }
+        public Patient? Patient { get; set; }
 
         [Required]
         public string DoctorId { get; set; }
         [ForeignKey("DoctorId")]
-        public Doctor Doctor { get; set; }
+        public Doctor? Doctor { get; set; }
 
         [Required]
         public int ProcedureId { get; set; }
         [ForeignKey("ProcedureId")]
-        public Procedure Procedure { get; set; }
+        public Procedure? Procedure { get; set; }
 
         [Required]
         [StringLength(50)]
