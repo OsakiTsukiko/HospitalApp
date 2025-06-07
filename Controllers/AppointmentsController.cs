@@ -338,5 +338,39 @@ namespace HospitalManagement.Controllers
         {
             return _context.Appointments.Any(e => e.Id == id);
         }
+
+        // GET: Appointments/GetUpcomingAppointments
+        [HttpGet]
+        public async Task<IActionResult> GetUpcomingAppointments()
+        {
+            var currentUser = await _userManager.GetUserAsync(User);
+            if (currentUser == null)
+            {
+                return Json(new { appointments = new List<object>() });
+            }
+
+            var now = DateTime.Now;
+            var twoDaysFromNow = now.AddHours(48);
+
+            var appointments = await _context.Appointments
+                .Include(a => a.Doctor)
+                .Include(a => a.Procedure)
+                .Where(a => 
+                    (currentUser.Role == UserRole.Patient && a.PatientId == currentUser.Id) ||
+                    (currentUser.Role == UserRole.Doctor && a.DoctorId == currentUser.Id))
+                .Where(a => a.DateTime >= now && a.DateTime <= twoDaysFromNow)
+                .OrderBy(a => a.DateTime)
+                .Select(a => new
+                {
+                    id = a.Id,
+                    dateTime = a.DateTime,
+                    doctorName = a.Doctor.Name,
+                    procedureName = a.Procedure.Name,
+                    room = a.Room
+                })
+                .ToListAsync();
+
+            return Json(new { appointments });
+        }
     }
 } 

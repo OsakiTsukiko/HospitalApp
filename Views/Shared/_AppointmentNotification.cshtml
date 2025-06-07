@@ -1,0 +1,52 @@
+@{
+    var userRole = ViewBag.UserRole;
+    if (userRole == UserRole.Patient || userRole == UserRole.Doctor)
+    {
+        <div id="appointmentNotification" class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+            <div id="appointmentToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header bg-primary text-white">
+                    <strong class="me-auto">Upcoming Appointments</strong>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    <div id="appointmentList"></div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function formatDateTime(dateTimeStr) {
+                const date = new Date(dateTimeStr);
+                return date.toLocaleString();
+            }
+
+            function checkUpcomingAppointments() {
+                fetch('/Appointments/GetUpcomingAppointments')
+                    .then(response => response.json())
+                    .then(data => {
+                        const appointmentList = document.getElementById('appointmentList');
+                        if (data.appointments && data.appointments.length > 0) {
+                            appointmentList.innerHTML = data.appointments.map(appointment => `
+                                <div class="mb-2">
+                                    <strong>${appointment.procedureName}</strong><br>
+                                    Date: ${formatDateTime(appointment.dateTime)}<br>
+                                    ${appointment.doctorName ? `Doctor: ${appointment.doctorName}<br>` : ''}
+                                    Room: ${appointment.room}
+                                </div>
+                            `).join('<hr>');
+                            
+                            const toast = new bootstrap.Toast(document.getElementById('appointmentToast'));
+                            toast.show();
+                        }
+                    })
+                    .catch(error => console.error('Error fetching appointments:', error));
+            }
+
+            // Check for appointments when the page loads
+            document.addEventListener('DOMContentLoaded', checkUpcomingAppointments);
+
+            // Check every hour
+            setInterval(checkUpcomingAppointments, 3600000);
+        </script>
+    }
+} 
