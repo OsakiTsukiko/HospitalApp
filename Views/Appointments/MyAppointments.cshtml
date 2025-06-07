@@ -1,0 +1,50 @@
+@model IEnumerable<HospitalManagement.Models.Appointment>
+
+@{
+    ViewData["Title"] = "My Appointments";
+}
+
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>My Appointments</h1>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            @if (!Model.Any())
+            {
+                <div class="alert alert-info">
+                    You don't have any appointments scheduled.
+                </div>
+            }
+            else
+            {
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead class="table-primary">
+                            <tr>
+                                <th>Date & Time</th>
+                                <th>Doctor</th>
+                                <th>Procedure</th>
+                                <th>Room</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.DateTime.ToString("MM/dd/yyyy HH:mm")</td>
+                                    <td>@item.Doctor?.Name</td>
+                                    <td>@item.Procedure?.Name</td>
+                                    <td>@item.Room</td>
+                                    <td>@(string.IsNullOrEmpty(item.Notes) ? "-" : item.Notes)</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+    </div>
+</div> 

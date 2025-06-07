@@ -312,6 +312,28 @@ namespace HospitalManagement.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        // GET: Appointments/MyAppointments
+        public async Task<IActionResult> MyAppointments()
+        {
+            await SetUserRole();
+            if (ViewBag.UserRole != UserRole.Patient)
+            {
+                return RedirectToAction("AccessDenied", "Home");
+            }
+
+            var currentUser = await _userManager.GetUserAsync(User);
+            var patient = await _context.Patients.FindAsync(currentUser.Id);
+
+            var appointments = await _context.Appointments
+                .Include(a => a.Doctor)
+                .Include(a => a.Procedure)
+                .Where(a => a.PatientId == patient.Id)
+                .OrderBy(a => a.DateTime)
+                .ToListAsync();
+
+            return View(appointments);
+        }
+
         private bool AppointmentExists(int id)
         {
             return _context.Appointments.Any(e => e.Id == id);
