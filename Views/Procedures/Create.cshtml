@@ -20,7 +20,9 @@
 
                 <div class="form-group mb-3">
                     <label asp-for="Department" class="control-label"></label>
-                    <input asp-for="Department" class="form-control" />
+                    <select asp-for="Department" class="form-select" asp-items="Html.GetEnumSelectList<HospitalManagement.Models.Department>()">
+                        <option value="">Select Department</option>
+                    </select>
                     <span asp-validation-for="Department" class="text-danger"></span>
                 </div>
 
