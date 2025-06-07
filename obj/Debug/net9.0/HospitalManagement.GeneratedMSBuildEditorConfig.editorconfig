@@ -17,61 +17,65 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = HospitalManagement
 build_property.RootNamespace = HospitalManagement
-build_property.ProjectDir = C:\Users\esmai\hospital\HospitalManagement\
+build_property.ProjectDir = C:\Users\Osaki\Documents\HMS\HospitalApp\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\esmai\hospital\HospitalManagement
+build_property.MSBuildProjectDirectory = C:\Users\Osaki\Documents\HMS\HospitalApp
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/esmai/hospital/HospitalManagement/Views/Account/Login.cshtml]
+[C:/Users/Osaki/Documents/HMS/HospitalApp/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/esmai/hospital/HospitalManagement/Views/Account/Register.cshtml]
+[C:/Users/Osaki/Documents/HMS/HospitalApp/Views/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/esmai/hospital/HospitalManagement/Views/Home/AdminDashboard.cshtml]
+[C:/Users/Osaki/Documents/HMS/HospitalApp/Views/Home/AdminDashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBZG1pbkRhc2hib2FyZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/esmai/hospital/HospitalManagement/Views/Home/Dashboard.cshtml]
+[C:/Users/Osaki/Documents/HMS/HospitalApp/Views/Home/Dashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxEYXNoYm9hcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/esmai/hospital/HospitalManagement/Views/Home/Index.cshtml]
+[C:/Users/Osaki/Documents/HMS/HospitalApp/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/esmai/hospital/HospitalManagement/Views/Home/Privacy.cshtml]
+[C:/Users/Osaki/Documents/HMS/HospitalApp/Views/Home/ListPatients.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxMaXN0UGF0aWVudHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Osaki/Documents/HMS/HospitalApp/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/esmai/hospital/HospitalManagement/Views/Home/UpdateProfile.cshtml]
+[C:/Users/Osaki/Documents/HMS/HospitalApp/Views/Home/UpdateProfile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxVcGRhdGVQcm9maWxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/esmai/hospital/HospitalManagement/Views/Shared/Error.cshtml]
+[C:/Users/Osaki/Documents/HMS/HospitalApp/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/esmai/hospital/HospitalManagement/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/Osaki/Documents/HMS/HospitalApp/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/esmai/hospital/HospitalManagement/Views/_ViewImports.cshtml]
+[C:/Users/Osaki/Documents/HMS/HospitalApp/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/esmai/hospital/HospitalManagement/Views/_ViewStart.cshtml]
+[C:/Users/Osaki/Documents/HMS/HospitalApp/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/esmai/hospital/HospitalManagement/Views/Shared/_Layout.cshtml]
+[C:/Users/Osaki/Documents/HMS/HospitalApp/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-ljvfyrkojo

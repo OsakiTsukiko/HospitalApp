@@ -4888,23 +4888,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\esmai\\.nuget\\packages\\": {},
+    "C:\\Users\\Osaki\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\esmai\\hospital\\HospitalManagement\\HospitalManagement.csproj",
+      "projectUniqueName": "C:\\Users\\Osaki\\Documents\\HMS\\HospitalApp\\HospitalManagement.csproj",
       "projectName": "HospitalManagement",
-      "projectPath": "C:\\Users\\esmai\\hospital\\HospitalManagement\\HospitalManagement.csproj",
-      "packagesPath": "C:\\Users\\esmai\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\esmai\\hospital\\HospitalManagement\\obj\\",
+      "projectPath": "C:\\Users\\Osaki\\Documents\\HMS\\HospitalApp\\HospitalManagement.csproj",
+      "packagesPath": "C:\\Users\\Osaki\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Osaki\\Documents\\HMS\\HospitalApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\esmai\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Osaki\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -4973,7 +4973,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

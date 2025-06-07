@@ -154,6 +154,22 @@ public class HomeController : Controller
         return RedirectToAction("Dashboard");
     }
 
+    [HttpGet]
+    public async Task<IActionResult> ListPatients()
+    {
+        var user = await _userManager.GetUserAsync(User);
+        if (user == null || user.Role != UserRole.Doctor)
+        {
+            return Forbid();
+        }
+
+        var patients = await _context.Users
+            .OfType<Patient>()
+            .ToListAsync();
+            
+        return View(patients);
+    }
+
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {

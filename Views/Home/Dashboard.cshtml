@@ -115,6 +115,11 @@
                             </table>
                         </div>
                     </div>
+                    <div class="mt-4">
+                        <a asp-action="ListPatients" class="btn btn-info">
+                            <i class="fas fa-users"></i> View All Patients
+                        </a>
+                    </div>
                 }
                 else if (ViewBag.UserRole == HospitalManagement.Models.UserRole.Admin)
                 {
